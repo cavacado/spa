@@ -3,66 +3,8 @@
     <v-container>
       <div id="app">
         <filterer v-on:triggerFilter='setFilter'></filterer>
-
         <v-progress-linear indeterminate v-if='!done'></v-progress-linear>
-        <!-- <collection-wrapper>
-          <collapsible-wrapper></collapsible-wrapper>
-        </collection-wrapper> -->
-        <v-collection v-for='(person,index) in API_DATA' v-if='done'>
-          <v-collection-avatar v-bind:src="gitHub_API_DATA[index].data.avatar_url">
-            <span class="title">gitHub Handle: <a v-bind:href='gitHub_API_DATA[index].data.html_url'>{{ person.githubLogin }}</a></span>
-
-            <v-collapsible collapse>
-              <li v-if="filter !== 'Project 2' && filter !== 'Project 3'">
-                <v-collapsible-header>
-                  <v-icon>filter_drama</v-icon> Project 1: {{ person.project1.repoName }}
-                </v-collapsible-header>
-                <v-collapsible-body>
-                  <v-row>
-                    <br>
-                    <v-grid m3 ><img v-bind:src="person.project1.previewImage" class='round'></v-grid>
-                    <v-grid m8>
-                      Deployed URL: <a :href='person.project1.deployedUrl'>{{ person.project1.deployedUrl }}</a><br><br>
-                      Repo URL: <a :href="'https://github.com/' + person.githubLogin + '/' + person.project1.repoName">{{ `https://github.com/${person.githubLogin}/${person.project1.repoName}` }}</a>
-                    </v-grid>
-                  </v-row>
-                </v-collapsible-body>
-              </li>
-              <li v-if="filter !== 'Project 1' && filter !== 'Project 3'">
-                <v-collapsible-header>
-                  <v-icon>place</v-icon> Project 2: {{ person.project2.repoName }}
-                </v-collapsible-header>
-                <v-collapsible-body>
-                  <v-row>
-                    <br>
-                    <v-grid m3 ><img v-bind:src="person.project2.previewImage" class='round'></v-grid>
-                    <v-grid m8>
-                      Deployed URL: <a :href='person.project2.deployedUrl'>{{ person.project2.deployedUrl }}</a><br><br>
-                      Repo URL: <a :href="'https://github.com/' + person.githubLogin + '/' + person.project2.repoName">{{ `https://github.com/${person.githubLogin}/${person.project2.repoName}` }}</a>
-                    </v-grid>
-                  </v-row>
-                </v-collapsible-body>
-              </li>
-              <li v-if="!!person.project3 && filter !== 'Project 1' && filter !== 'Project 2'">
-                <v-collapsible-header >
-                  <v-icon>whatshot</v-icon> Project 3: {{ person.project3.repoName }}
-                </v-collapsible-header>
-                <v-collapsible-body>
-                  <v-row>
-                    <br>
-                    <v-grid m3 ><img v-bind:src="person.project3.previewImage" class='round'></v-grid>
-                    <v-grid m8>
-                      Deployed URL: <a :href='person.project3.deployedUrl'>{{ person.project3.deployedUrl }}</a></a><br><br>
-                      Repo URL: <a :href="'https://github.com/' + person.githubLogin + '/' + person.project3.repoName">{{ `https://github.com/${person.githubLogin}/${person.project3.repoName}` }}</a>
-                    </v-grid>
-                  </v-row>
-                </v-collapsible-body>
-              </li>
-            </v-collapsible>
-
-          </v-collection-avatar>
-        </v-collection>
-
+        <collection-wrapper v-if='done' :a-data='API_DATA' :g-data='gitHub_API_DATA' :done='done' :filter='filter'></collection-wrapper>
       </div>
     </v-container>
     <v-footer class='teal'>
@@ -74,10 +16,11 @@
 <script>
 import axios from 'axios';
 import filterer from './components/Filter.vue';
+import collectionWrapper from './components/CollectionWrapper.vue';
 
 export default {
   name: 'app',
-  components: { filterer },
+  components: { filterer, collectionWrapper },
   data: function() {
     return {
       API_PATH: 'https://raw.githubusercontent.com/wdi-sg/alumni/master/data.json',
