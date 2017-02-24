@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "axios": "^0.15.3",
+    "dotenv-webpack": "^1.4.1",
     "vue": "^2.1.10",
     "vue-materials": "^1.0.7-rc.6",
     "vue-router": "^2.2.1"

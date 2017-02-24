@@ -4,7 +4,9 @@
       <div id="app">
         <filterer v-on:triggerFilter='setFilter'></filterer>
         <v-progress-linear indeterminate v-if='!done'></v-progress-linear>
-        <collection-wrapper v-if='done' :a-data='API_DATA' :g-data='gitHub_API_DATA' :done='done' :filter='filter'></collection-wrapper>
+        <transition name='fade'>
+          <collection-wrapper v-if='done' :a-data='API_DATA' :g-data='gitHub_API_DATA' :done='done' :filter='filter'></collection-wrapper>
+        </transition>
       </div>
     </v-container>
     <v-footer class='teal'>
@@ -39,7 +41,7 @@ export default {
   computed: {
   },
   created: function() {
-      const token = '1062ae6dd8d0f42742dd5fcde3c8de298f052a92';
+      const token = process.env.token;
       let vm = this;
       let promises = [];
       axios.get(vm.API_PATH).then(function(response) {
@@ -64,10 +66,17 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+  font-size: larger;
 }
 .round {
   border-radius: 50%;
   width: 60px;
   height: 60px;
+}
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 2s
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
+  opacity: 0
 }
 </style>

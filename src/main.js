@@ -7,9 +7,6 @@ import App from './App';
 
 Vue.use(Materials)
 Vue.use(VueRouter)
-
-
-
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
