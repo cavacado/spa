@@ -8,6 +8,7 @@ var CopyWebpackPlugin = require('copy-webpack-plugin')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
+var Dotenv = require('dotenv-webpack')
 
 var env = config.build.env
 
@@ -26,6 +27,9 @@ var webpackConfig = merge(baseWebpackConfig, {
   },
   plugins: [
     // http://vuejs.github.io/vue-loader/en/workflow/production.html
+    new Dotenv({
+      path: '.env'
+    }),
     new webpack.DefinePlugin({
       'process.env': env
     }),

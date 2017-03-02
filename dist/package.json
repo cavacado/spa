@@ -1,0 +1,10 @@
+{
+ "name": "pa",
+ "version": "1.0.0",
+ "description": "single-page-app",
+ "author": "cavacado",
+ "private": true,
+ "scripts": {
+   "postinstall": "npm install express"
+ }
+}
