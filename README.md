@@ -29,7 +29,7 @@ Click on various cards to expand for more information
 
 Type into the filter search bar to filter between project 1, 2 and 3
 
-![alt text](public/assets/ttt-demo.gif)
+![alt text](spa-demo.gif)
 
 ## Tests
 
